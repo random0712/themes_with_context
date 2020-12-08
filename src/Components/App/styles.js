@@ -2,15 +2,59 @@ import styled from 'styled-components';
 
 const Div = styled.div`
 	display: grid;
-	grid-template-columns: 20% 1fr;
+	height: 100%;
+
+	grid-template-columns: 1fr;
 	grid-template-rows: 50px 1fr 5%;
 	grid-template-areas: 
 		"header header"
-		"menu content"
+		"content content"
 		"footer footer";
+	& menu {
+		display: none;
+	};
 
-	height: 100%;
+	&.menu-open {
+		grid-template-columns: 1fr;
+		grid-template-rows: 50px 1fr 5%;
+		grid-template-areas: 
+			"header header"
+			"menu menu"
+			"footer footer";
+		& menu {
+			display: flex;
+		};
+		& main {
+			display: none;
+		}
+	};
+
+	@media (min-width: 768px) {
+		grid-template-columns: 20% 1fr;
+		grid-template-rows: 50px 1fr 5%;
+		grid-template-areas: 
+			"header header"
+			"menu content"
+			"footer footer";
+
+		& menu {
+			display: flex;
+		}
+
+		& main {
+			display: flex;
+		}
+
+		& .menu-toggle {
+			display: none;
+		}
+
+	};
+`;
+
+const RightMenuItems = styled.div`
+
 `;
 
 
-export default Div;
+export { Div, RightMenuItems };
